@@ -56,10 +56,34 @@ public class Contact {
 		return email;
 	}
 
+	// setters needed for UC3 editing
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public void setState(String state) {
+		this.state = state;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	@Override
 	public String toString() {
-		return "\n---------------Contact Details-----------" + "\nFirst Name: " + firstName + "\nLast Name: " + lastName + "\nAddress: "
-				+ address + "\nCity: " + city + "\nState: " + state + "\nZip: " + zip + "\nPhone Number: " + phoneNumber
-				+ "\nEmail: " + email;
+		return "\n---------------Contact Details-----------" +
+				"\nFirst Name: " + firstName +
+				"\nLast Name: " + lastName +
+				"\nAddress: " + address +
+				"\nCity: " + city +
+				"\nState: " + state +
+				"\nZip: " + zip +
+				"\nPhone Number: " + phoneNumber +
+				"\nEmail: " + email;
 	}
 }
