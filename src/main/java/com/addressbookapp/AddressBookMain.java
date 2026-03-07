@@ -1,7 +1,6 @@
 package com.addressbookapp;
 
-import com.addressbookapp.model.AddressBook;
-import com.addressbookapp.model.Contact;
+import com.addressbookapp.model.AddressBookSystem;
 
 import java.util.Scanner;
 
@@ -10,48 +9,29 @@ public class AddressBookMain {
 	public static void start() {
 
 		Scanner scanner = new Scanner(System.in);
-		AddressBook addressBook = new AddressBook();
+		AddressBookSystem addressBookSystem = new AddressBookSystem();
 
 		System.out.println("Welcome to Address Book Program");
 
 		String choice;
 
 		do {
-			System.out.println("\nEnter Contact Details:");
+			System.out.print("\nEnter Address Book Name: ");
+			String addressBookName = scanner.nextLine();
 
-			System.out.print("Enter First Name: ");
-			String firstName = scanner.nextLine();
+			boolean isAdded = addressBookSystem.addAddressBook(addressBookName);
 
-			System.out.print("Enter Last Name: ");
-			String lastName = scanner.nextLine();
+			if (isAdded) {
+				System.out.println("Address Book added successfully!");
+			} else {
+				System.out.println("Address Book with this name already exists.");
+			}
 
-			System.out.print("Enter Address: ");
-			String address = scanner.nextLine();
-
-			System.out.print("Enter City: ");
-			String city = scanner.nextLine();
-
-			System.out.print("Enter State: ");
-			String state = scanner.nextLine();
-
-			System.out.print("Enter Zip: ");
-			String zip = scanner.nextLine();
-
-			System.out.print("Enter Phone Number: ");
-			String phoneNumber = scanner.nextLine();
-
-			System.out.print("Enter Email: ");
-			String email = scanner.nextLine();
-
-			Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
-			addressBook.addContact(contact);
-
-			System.out.print("\nDo you want to add another contact? (yes/no): ");
+			System.out.print("Do you want to add another Address Book? (yes/no): ");
 			choice = scanner.nextLine();
 
 		} while (choice.equalsIgnoreCase("yes"));
 
-		System.out.println("\nAll Contacts in Address Book:");
-		addressBook.displayContacts();
+		addressBookSystem.displayAddressBooks();
 	}
 }
