@@ -56,30 +56,6 @@ public class Contact {
 		return email;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public void setZip(String zip) {
-		this.zip = zip;
-	}
-
-	public void setPhoneNumber(String phoneNumber) {
-		this.phoneNumber = phoneNumber;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
 	@Override
 	public String toString() {
 		return "\n---------------Contact Details-----------" + "\nFirst Name: " + firstName + "\nLast Name: " + lastName
