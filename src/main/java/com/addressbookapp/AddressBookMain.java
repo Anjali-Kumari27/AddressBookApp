@@ -1,25 +1,49 @@
 package com.addressbookapp;
 
+import com.addressbookapp.model.AddressBook;
 import com.addressbookapp.model.Contact;
+
+import java.util.Scanner;
 
 public class AddressBookMain {
 
-    public static void start() {
+	public static void start() {
 
-        System.out.println("Welcome to Address Book Program");
+		Scanner input = new Scanner(System.in);
 
-        Contact contact = new Contact(
-                "Anjali",
-                "Singh",
-                "123 MG Road",
-                "Bhopal",
-                "Madhya Pradesh",
-                "462001",
-                "9876543210",
-                "anjali@example.com"
-        );
+		System.out.println("Welcome to Address Book Program");
+		System.out.println("\nEnter Contact Details:");
 
-        System.out.println("\nContact Created Successfully!");
-        System.out.println(contact);
-    }
+		System.out.print("Enter First Name: ");
+		String firstName = input.nextLine();
+
+		System.out.print("Enter Last Name: ");
+		String lastName = input.nextLine();
+
+		System.out.print("Enter Address: ");
+		String address = input.nextLine();
+
+		System.out.print("Enter City: ");
+		String city = input.nextLine();
+
+		System.out.print("Enter State: ");
+		String state = input.nextLine();
+
+		System.out.print("Enter Zip: ");
+		String zip = input.nextLine();
+
+		System.out.print("Enter Phone Number: ");
+		String phoneNumber = input.nextLine();
+
+		System.out.print("Enter Email: ");
+		String email = input.nextLine();
+
+		Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+
+		AddressBook addressBook = new AddressBook();
+		addressBook.addContact(contact);
+
+		System.out.println("\nContact added successfully to Address Book!");
+		addressBook.displayContact();
+	}
 }
