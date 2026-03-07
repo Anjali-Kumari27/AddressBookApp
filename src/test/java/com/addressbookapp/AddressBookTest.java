@@ -9,50 +9,35 @@ import static org.junit.jupiter.api.Assertions.*;
 public class AddressBookTest {
 
 	@Test
-	public void givenContact_whenDeletedByName_shouldRemoveContact() {
+	public void givenMultipleContacts_whenAdded_shouldStoreAllContacts() {
 
 		AddressBook addressBook = new AddressBook();
 
-		Contact contact = new Contact(
+		Contact contact1 = new Contact(
 				"Anjali",
 				"Singh",
 				"123 MG Road",
 				"Bhopal",
-				"MP",
+				"Madhya Pradesh",
 				"462001",
 				"9876543210",
 				"anjali@example.com"
 		);
 
-		addressBook.addContact(contact);
-
-		boolean result = addressBook.deleteContact("Anjali");
-
-		assertTrue(result);
-		assertNull(addressBook.getContact());
-	}
-
-	@Test
-	public void givenWrongName_whenDeleted_shouldReturnFalse() {
-
-		AddressBook addressBook = new AddressBook();
-
-		Contact contact = new Contact(
-				"Anjali",
-				"Singh",
-				"123 MG Road",
-				"Bhopal",
-				"MP",
-				"462001",
-				"9876543210",
-				"anjali@example.com"
+		Contact contact2 = new Contact(
+				"Rahul",
+				"Verma",
+				"45 Lake View",
+				"Indore",
+				"Madhya Pradesh",
+				"452001",
+				"9999999999",
+				"rahul@example.com"
 		);
 
-		addressBook.addContact(contact);
+		addressBook.addContact(contact1);
+		addressBook.addContact(contact2);
 
-		boolean result = addressBook.deleteContact("Rahul");
-
-		assertFalse(result);
-		assertNotNull(addressBook.getContact());
+		assertEquals(2, addressBook.getContactList().size());
 	}
 }
