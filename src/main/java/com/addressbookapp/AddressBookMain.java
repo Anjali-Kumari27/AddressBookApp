@@ -11,53 +11,58 @@ public class AddressBookMain {
 
 		Scanner scanner = new Scanner(System.in);
 
+		AddressBook addressBook = new AddressBook();
+
 		System.out.println("Welcome to Address Book Program");
 
-		System.out.println("\nEnter Contact Details:");
+		System.out.println("\nEnter Contact Details");
 
-		System.out.print("Enter First Name: ");
+		System.out.print("First Name: ");
 		String firstName = scanner.nextLine();
 
-		System.out.print("Enter Last Name: ");
+		System.out.print("Last Name: ");
 		String lastName = scanner.nextLine();
 
-		System.out.print("Enter Address: ");
+		System.out.print("Address: ");
 		String address = scanner.nextLine();
 
-		System.out.print("Enter City: ");
+		System.out.print("City: ");
 		String city = scanner.nextLine();
 
-		System.out.print("Enter State: ");
+		System.out.print("State: ");
 		String state = scanner.nextLine();
 
-		System.out.print("Enter Zip: ");
+		System.out.print("Zip: ");
 		String zip = scanner.nextLine();
 
-		System.out.print("Enter Phone Number: ");
+		System.out.print("Phone Number: ");
 		String phone = scanner.nextLine();
 
-		System.out.print("Enter Email: ");
+		System.out.print("Email: ");
 		String email = scanner.nextLine();
 
 		Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
-
-		AddressBook addressBook = new AddressBook();
 
 		addressBook.addContact(contact);
 
 		System.out.println("\nContact added successfully!");
 		addressBook.displayContact();
 
-		System.out.println("\n----------------------");
-		System.out.println("      Edit Contact    ");
-		System.out.println("----------------------");
+		System.out.println("\n=================================");
+		System.out.println("          Delete Contact           ");
+		System.out.println("=================================");
 
-		System.out.print("Enter First Name to edit: ");
-		String editName = scanner.nextLine();
+		System.out.print("Enter First Name to delete: ");
+		String deleteName = scanner.nextLine();
 
-		addressBook.editContact(editName);
+		boolean deleted = addressBook.deleteContact(deleteName);
 
-		System.out.println("\nUpdated Contact:");
+		if (deleted) {
+			System.out.println("Contact deleted successfully.");
+		} else {
+			System.out.println("Contact not found.");
+		}
+
 		addressBook.displayContact();
 	}
 }
