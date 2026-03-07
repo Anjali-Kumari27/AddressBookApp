@@ -9,41 +9,55 @@ public class AddressBookMain {
 
 	public static void start() {
 
-		Scanner input = new Scanner(System.in);
+		Scanner scanner = new Scanner(System.in);
 
 		System.out.println("Welcome to Address Book Program");
+
 		System.out.println("\nEnter Contact Details:");
 
 		System.out.print("Enter First Name: ");
-		String firstName = input.nextLine();
+		String firstName = scanner.nextLine();
 
 		System.out.print("Enter Last Name: ");
-		String lastName = input.nextLine();
+		String lastName = scanner.nextLine();
 
 		System.out.print("Enter Address: ");
-		String address = input.nextLine();
+		String address = scanner.nextLine();
 
 		System.out.print("Enter City: ");
-		String city = input.nextLine();
+		String city = scanner.nextLine();
 
 		System.out.print("Enter State: ");
-		String state = input.nextLine();
+		String state = scanner.nextLine();
 
 		System.out.print("Enter Zip: ");
-		String zip = input.nextLine();
+		String zip = scanner.nextLine();
 
 		System.out.print("Enter Phone Number: ");
-		String phoneNumber = input.nextLine();
+		String phone = scanner.nextLine();
 
 		System.out.print("Enter Email: ");
-		String email = input.nextLine();
+		String email = scanner.nextLine();
 
-		Contact contact = new Contact(firstName, lastName, address, city, state, zip, phoneNumber, email);
+		Contact contact = new Contact(firstName, lastName, address, city, state, zip, phone, email);
 
 		AddressBook addressBook = new AddressBook();
+
 		addressBook.addContact(contact);
 
-		System.out.println("\nContact added successfully to Address Book!");
+		System.out.println("\nContact added successfully!");
+		addressBook.displayContact();
+
+		System.out.println("\n----------------------");
+		System.out.println("      Edit Contact    ");
+		System.out.println("----------------------");
+
+		System.out.print("Enter First Name to edit: ");
+		String editName = scanner.nextLine();
+
+		addressBook.editContact(editName);
+
+		System.out.println("\nUpdated Contact:");
 		addressBook.displayContact();
 	}
 }
