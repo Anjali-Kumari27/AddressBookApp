@@ -1,33 +1,32 @@
 package com.addressbookapp.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class AddressBook {
 
-	private Contact contact;
+	private List<Contact> contactList;
+
+	public AddressBook() {
+		this.contactList = new ArrayList<>();
+	}
 
 	public void addContact(Contact contact) {
-		this.contact = contact;
+		contactList.add(contact);
 	}
 
-	public Contact getContact() {
-		return contact;
+	public List<Contact> getContactList() {
+		return contactList;
 	}
 
-	public void displayContact() {
+	public void displayContacts() {
+		if (contactList.isEmpty()) {
+			System.out.println("No contacts available in Address Book.");
+			return;
+		}
 
-		if (contact != null) {
+		for (Contact contact : contactList) {
 			System.out.println(contact);
-		} else {
-			System.out.println("No contact available.");
 		}
-	}
-
-	public boolean deleteContact(String firstName) {
-
-		if (contact != null && contact.getFirstName().equalsIgnoreCase(firstName)) {
-			contact = null;
-			return true;
-		}
-
-		return false;
 	}
 }
