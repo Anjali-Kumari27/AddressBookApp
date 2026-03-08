@@ -133,5 +133,17 @@ public class AddressBookMain {
 		Map<String, Long> stateCountMap = addressBookSystem.countPersonsByState();
 
 		stateCountMap.forEach((stateName, count) -> System.out.println("State: " + stateName + " -> Count: " + count));
+
+		System.out.println("\n--- Sorted Contacts By Name (for each Address Book) ---");
+		System.out.print("Enter Address Book Name to sort contacts: ");
+		String sortBookName = scanner.nextLine();
+
+		AddressBook sortBook = addressBookSystem.getAddressBook(sortBookName);
+
+		if (sortBook == null) {
+			System.out.println("Address Book not found.");
+		} else {
+			sortBook.displaySortedContactsByName();
+		}
 	}
 }
