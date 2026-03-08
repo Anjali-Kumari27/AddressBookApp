@@ -44,8 +44,62 @@ public class AddressBook {
 				.collect(Collectors.toList());
 	}
 
+	public List<Contact> sortContactsByCity() {
+		return contacts.stream()
+				.sorted(Comparator.comparing(Contact::getCity, String.CASE_INSENSITIVE_ORDER)
+						.thenComparing(Contact::getFirstName, String.CASE_INSENSITIVE_ORDER)
+						.thenComparing(Contact::getLastName, String.CASE_INSENSITIVE_ORDER))
+				.collect(Collectors.toList());
+	}
+
+	public List<Contact> sortContactsByState() {
+		return contacts.stream()
+				.sorted(Comparator.comparing(Contact::getState, String.CASE_INSENSITIVE_ORDER)
+						.thenComparing(Contact::getFirstName, String.CASE_INSENSITIVE_ORDER)
+						.thenComparing(Contact::getLastName, String.CASE_INSENSITIVE_ORDER))
+				.collect(Collectors.toList());
+	}
+
+	public List<Contact> sortContactsByZip() {
+		return contacts.stream().sorted(Comparator.comparing(Contact::getZip, String.CASE_INSENSITIVE_ORDER))
+				.collect(Collectors.toList());
+	}
+
 	public void displaySortedContactsByName() {
 		List<Contact> sortedContacts = sortContactsByName();
+
+		if (sortedContacts.isEmpty()) {
+			System.out.println("No contacts available for sorting.");
+			return;
+		}
+
+		sortedContacts.forEach(System.out::println);
+	}
+
+	public void displaySortedContactsByCity() {
+		List<Contact> sortedContacts = sortContactsByCity();
+
+		if (sortedContacts.isEmpty()) {
+			System.out.println("No contacts available for sorting.");
+			return;
+		}
+
+		sortedContacts.forEach(System.out::println);
+	}
+
+	public void displaySortedContactsByState() {
+		List<Contact> sortedContacts = sortContactsByState();
+
+		if (sortedContacts.isEmpty()) {
+			System.out.println("No contacts available for sorting.");
+			return;
+		}
+
+		sortedContacts.forEach(System.out::println);
+	}
+
+	public void displaySortedContactsByZip() {
+		List<Contact> sortedContacts = sortContactsByZip();
 
 		if (sortedContacts.isEmpty()) {
 			System.out.println("No contacts available for sorting.");
