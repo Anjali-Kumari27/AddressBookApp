@@ -134,7 +134,7 @@ public class AddressBookMain {
 
 		stateCountMap.forEach((stateName, count) -> System.out.println("State: " + stateName + " -> Count: " + count));
 
-		System.out.println("\n--- Sorted Contacts By Name (for each Address Book) ---");
+		System.out.println("\n--- Sorting Menu ---");
 		System.out.print("Enter Address Book Name to sort contacts: ");
 		String sortBookName = scanner.nextLine();
 
@@ -142,8 +142,41 @@ public class AddressBookMain {
 
 		if (sortBook == null) {
 			System.out.println("Address Book not found.");
-		} else {
+			return;
+		}
+
+		System.out.println("\nChoose sorting option:");
+		System.out.println("1. Sort by Name");
+		System.out.println("2. Sort by City");
+		System.out.println("3. Sort by State");
+		System.out.println("4. Sort by Zip");
+		System.out.print("Enter your choice: ");
+
+		int sortChoice = Integer.parseInt(scanner.nextLine());
+
+		switch (sortChoice) {
+		case 1:
+			System.out.println("\n--- Sorted Contacts By Name ---");
 			sortBook.displaySortedContactsByName();
+			break;
+
+		case 2:
+			System.out.println("\n--- Sorted Contacts By City ---");
+			sortBook.displaySortedContactsByCity();
+			break;
+
+		case 3:
+			System.out.println("\n--- Sorted Contacts By State ---");
+			sortBook.displaySortedContactsByState();
+			break;
+
+		case 4:
+			System.out.println("\n--- Sorted Contacts By Zip ---");
+			sortBook.displaySortedContactsByZip();
+			break;
+
+		default:
+			System.out.println("Invalid choice.");
 		}
 	}
 }
