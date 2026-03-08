@@ -45,4 +45,14 @@ public class AddressBookSystem {
 		return addressBooks.values().stream().flatMap(addressBook -> addressBook.getContacts().stream())
 				.collect(Collectors.groupingBy(contact -> contact.getState().toLowerCase()));
 	}
+
+	public Map<String, Long> countPersonsByCity() {
+		return addressBooks.values().stream().flatMap(addressBook -> addressBook.getContacts().stream())
+				.collect(Collectors.groupingBy(contact -> contact.getCity().toLowerCase(), Collectors.counting()));
+	}
+
+	public Map<String, Long> countPersonsByState() {
+		return addressBooks.values().stream().flatMap(addressBook -> addressBook.getContacts().stream())
+				.collect(Collectors.groupingBy(contact -> contact.getState().toLowerCase(), Collectors.counting()));
+	}
 }
