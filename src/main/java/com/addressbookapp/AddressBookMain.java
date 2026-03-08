@@ -119,9 +119,19 @@ public class AddressBookMain {
 		System.out.println("\n--- View Persons By State ---");
 		Map<String, List<Contact>> stateMap = addressBookSystem.viewPersonsByState();
 
-		stateMap.forEach((state, contacts) -> {
-			System.out.println("\nState: " + state);
+		stateMap.forEach((stateName, contacts) -> {
+			System.out.println("\nState: " + stateName);
 			contacts.forEach(System.out::println);
 		});
+
+		System.out.println("\n--- Count By City ---");
+		Map<String, Long> cityCountMap = addressBookSystem.countPersonsByCity();
+
+		cityCountMap.forEach((city, count) -> System.out.println("City: " + city + " -> Count: " + count));
+
+		System.out.println("\n--- Count By State ---");
+		Map<String, Long> stateCountMap = addressBookSystem.countPersonsByState();
+
+		stateCountMap.forEach((stateName, count) -> System.out.println("State: " + stateName + " -> Count: " + count));
 	}
 }
