@@ -5,28 +5,36 @@ import java.util.List;
 
 public class AddressBook {
 
-	private List<Contact> contactList;
+    private List<Contact> contacts;
 
-	public AddressBook() {
-		this.contactList = new ArrayList<>();
-	}
+    public AddressBook() {
+        this.contacts = new ArrayList<>();
+    }
 
-	public void addContact(Contact contact) {
-		contactList.add(contact);
-	}
+    public boolean addContact(Contact newContact) {
+        boolean isDuplicate = contacts.stream()
+                .anyMatch(existingContact -> existingContact.equals(newContact));
 
-	public List<Contact> getContactList() {
-		return contactList;
-	}
+        if (isDuplicate) {
+            return false;
+        }
 
-	public void displayContacts() {
-		if (contactList.isEmpty()) {
-			System.out.println("No contacts available in Address Book.");
-			return;
-		}
+        contacts.add(newContact);
+        return true;
+    }
 
-		for (Contact contact : contactList) {
-			System.out.println(contact);
-		}
-	}
+    public void displayContacts() {
+        if (contacts.isEmpty()) {
+            System.out.println("No contacts found.");
+            return;
+        }
+
+        for (Contact contact : contacts) {
+            System.out.println(contact);
+        }
+    }
+
+    public List<Contact> getContacts() {
+        return contacts;
+    }
 }
