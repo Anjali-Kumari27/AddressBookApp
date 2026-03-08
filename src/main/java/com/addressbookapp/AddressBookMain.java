@@ -5,6 +5,7 @@ import com.addressbookapp.model.AddressBookSystem;
 import com.addressbookapp.model.Contact;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Scanner;
 
 public class AddressBookMain {
@@ -82,6 +83,7 @@ public class AddressBookMain {
 		} while (mainChoice.equalsIgnoreCase("yes"));
 
 		System.out.println("\n--- Search Menu ---");
+
 		System.out.print("Enter city to search: ");
 		String cityToSearch = scanner.nextLine();
 
@@ -105,5 +107,21 @@ public class AddressBookMain {
 			System.out.println("\nPersons found in state: " + stateToSearch);
 			stateResults.forEach(System.out::println);
 		}
+
+		System.out.println("\n--- View Persons By City ---");
+		Map<String, List<Contact>> cityMap = addressBookSystem.viewPersonsByCity();
+
+		cityMap.forEach((city, contacts) -> {
+			System.out.println("\nCity: " + city);
+			contacts.forEach(System.out::println);
+		});
+
+		System.out.println("\n--- View Persons By State ---");
+		Map<String, List<Contact>> stateMap = addressBookSystem.viewPersonsByState();
+
+		stateMap.forEach((state, contacts) -> {
+			System.out.println("\nState: " + state);
+			contacts.forEach(System.out::println);
+		});
 	}
 }
