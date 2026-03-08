@@ -1,42 +1,52 @@
 package com.addressbookapp.model;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 public class AddressBookSystem {
 
-	private Map<String, AddressBook> addressBookMap;
+    private Map<String, AddressBook> addressBooks;
 
-	public AddressBookSystem() {
-		this.addressBookMap = new HashMap<>();
-	}
+    public AddressBookSystem() {
+        this.addressBooks = new HashMap<>();
+    }
 
-	public boolean addAddressBook(String addressBookName) {
-		if (addressBookMap.containsKey(addressBookName)) {
-			return false;
-		}
+    public boolean addAddressBook(String addressBookName) {
+        if (addressBooks.containsKey(addressBookName)) {
+            return false;
+        }
 
-		addressBookMap.put(addressBookName, new AddressBook());
-		return true;
-	}
+        addressBooks.put(addressBookName, new AddressBook());
+        return true;
+    }
 
-	public Map<String, AddressBook> getAddressBookMap() {
-		return addressBookMap;
-	}
+    public AddressBook getAddressBook(String addressBookName) {
+        return addressBooks.get(addressBookName);
+    }
 
-	public AddressBook getAddressBook(String addressBookName) {
-		return addressBookMap.get(addressBookName);
-	}
+    public List<Contact> searchPersonByCity(String city) {
+        return addressBooks.values().stream()
+                .flatMap(addressBook -> addressBook.getContacts().stream())
+                .filter(contact -> contact.getCity().equalsIgnoreCase(city))
+                .collect(Collectors.toList());
+    }
 
-	public void displayAddressBooks() {
-		if (addressBookMap.isEmpty()) {
-			System.out.println("No Address Books available in the system.");
-			return;
-		}
+    public List<Contact> searchPersonByState(String state) {
+        return addressBooks.values().stream()
+                .flatMap(addressBook -> addressBook.getContacts().stream())
+                .filter(contact -> contact.getState().equalsIgnoreCase(state))
+                .collect(Collectors.toList());
+    }
 
-		System.out.println("\nAddress Books in System:");
-		for (String name : addressBookMap.keySet()) {
-			System.out.println(name);
-		}
-	}
+    public void displayAllAddressBooks() {
+        if (addressBooks.isEmpty()) {
+            System.out.println("No Address Books available.");
+            return;
+        }
+
+        System.out.println("Available Address Books:");
+        addressBooks.keySet().forEach(System.out::println);
+    }
 }
