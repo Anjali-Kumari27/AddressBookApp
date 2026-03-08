@@ -59,4 +59,28 @@ public class ContactTest {
 
 		assertTrue(result.contains("9876543210"));
 	}
+
+	@Test
+	public void givenTwoContactsWithSameName_whenCompared_shouldBeEqual() {
+
+		Contact contact1 = new Contact("Anjali", "Singh", "123 MG Road", "Bhopal", "Madhya Pradesh", "462001",
+				"9876543210", "anjali@example.com");
+
+		Contact contact2 = new Contact("Anjali", "Singh", "45 Lake View", "Indore", "Madhya Pradesh", "452001",
+				"9999999999", "anjali2@example.com");
+
+		assertEquals(contact1, contact2);
+	}
+
+	@Test
+	public void givenTwoContactsWithDifferentName_whenCompared_shouldNotBeEqual() {
+
+		Contact contact1 = new Contact("Anjali", "Singh", "123 MG Road", "Bhopal", "Madhya Pradesh", "462001",
+				"9876543210", "anjali@example.com");
+
+		Contact contact2 = new Contact("Rahul", "Verma", "45 Lake View", "Indore", "Madhya Pradesh", "452001",
+				"9999999999", "rahul@example.com");
+
+		assertNotEquals(contact1, contact2);
+	}
 }
