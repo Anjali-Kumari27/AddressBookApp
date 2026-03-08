@@ -7,11 +7,12 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.util.List;
+import java.util.Map;
 
 public class AddressBookSystemTest {
 
 	@Test
-	void givenMultipleAddressBooks_WhenSearchByCity_ShouldReturnMatchingContacts() {
+	void givenMultipleContacts_WhenViewedByCity_ShouldGroupCorrectly() {
 		AddressBookSystem system = new AddressBookSystem();
 
 		system.addAddressBook("Friends");
@@ -21,16 +22,18 @@ public class AddressBookSystemTest {
 		AddressBook family = system.getAddressBook("Family");
 
 		friends.addContact(new Contact("Anjali", "Singh", "A1", "Bhopal", "MP", "462001", "12345", "anjali@gmail.com"));
-		family.addContact(new Contact("Arpita", "Sharma", "A2", "Bhopal", "MP", "462002", "67890", "arpita@gmail.com"));
-		family.addContact(new Contact("Riya", "Verma", "A3", "Indore", "MP", "452001", "99999", "riya@gmail.com"));
+		friends.addContact(
+				new Contact("Arpita", "Sharma", "A2", "Bhopal", "MP", "462002", "67890", "arpita@gmail.com"));
+		family.addContact(new Contact("Riya", "Verma", "A3", "Noida", "UP", "201301", "99999", "riya@gmail.com"));
 
-		List<Contact> result = system.searchPersonByCity("Bhopal");
+		Map<String, List<Contact>> cityMap = system.viewPersonsByCity();
 
-		Assertions.assertEquals(2, result.size());
+		Assertions.assertEquals(2, cityMap.get("bhopal").size());
+		Assertions.assertEquals(1, cityMap.get("noida").size());
 	}
 
 	@Test
-	void givenMultipleAddressBooks_WhenSearchByState_ShouldReturnMatchingContacts() {
+	void givenMultipleContacts_WhenViewedByState_ShouldGroupCorrectly() {
 		AddressBookSystem system = new AddressBookSystem();
 
 		system.addAddressBook("Friends");
@@ -43,8 +46,9 @@ public class AddressBookSystemTest {
 		office.addContact(new Contact("Rohit", "Kumar", "A2", "Lucknow", "UP", "226001", "67890", "rohit@gmail.com"));
 		office.addContact(new Contact("Pooja", "Sharma", "A3", "Kanpur", "UP", "208001", "77777", "pooja@gmail.com"));
 
-		List<Contact> result = system.searchPersonByState("UP");
+		Map<String, List<Contact>> stateMap = system.viewPersonsByState();
 
-		Assertions.assertEquals(2, result.size());
+		Assertions.assertEquals(1, stateMap.get("mp").size());
+		Assertions.assertEquals(2, stateMap.get("up").size());
 	}
 }
