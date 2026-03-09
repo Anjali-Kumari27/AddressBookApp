@@ -172,17 +172,28 @@ public class AddressBookMain {
 			System.out.println("Invalid choice.");
 		}
 
-		String fileName = "addressbook.txt";
+		String textFileName = "addressbook.txt";
 
 		System.out.println("\n--- UC13 File IO ---");
+		System.out.println("\nWriting contacts to text file...");
+		FileUtil.writeContactsToFile(sortBook.getContacts(), textFileName);
 
-		System.out.println("\nWriting contacts to file...");
-		FileUtil.writeContactsToFile(sortBook.getContacts(), fileName);
+		System.out.println("\nReading contacts from text file...");
+		List<Contact> contactsFromTextFile = FileUtil.readContactsFromFile(textFileName);
 
-		System.out.println("\nReading contacts from file...");
-		List<Contact> contactsFromFile = FileUtil.readContactsFromFile(fileName);
+		System.out.println("\nContacts read from text file:");
+		contactsFromTextFile.forEach(System.out::println);
 
-		System.out.println("\nContacts read from file:");
-		contactsFromFile.forEach(System.out::println);
+		String csvFileName = "addressbook.csv";
+
+		System.out.println("\n--- UC14 CSV File IO ---");
+		System.out.println("\nWriting contacts to CSV file...");
+		FileUtil.writeContactsToCSV(sortBook.getContacts(), csvFileName);
+
+		System.out.println("\nReading contacts from CSV file...");
+		List<Contact> contactsFromCSV = FileUtil.readContactsFromCSV(csvFileName);
+
+		System.out.println("\nContacts read from CSV file:");
+		contactsFromCSV.forEach(System.out::println);
 	}
 }
