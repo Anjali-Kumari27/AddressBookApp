@@ -4,6 +4,7 @@ import java.util.Objects;
 
 public class Contact {
 
+	private int id;
 	private String firstName;
 	private String lastName;
 	private String address;
@@ -13,9 +14,12 @@ public class Contact {
 	private String phoneNumber;
 	private String email;
 
-	public Contact(String firstName, String lastName, String address, String city, String state, String zip,
-			String phoneNumber, String email) {
+	public Contact() {
+	}
 
+	public Contact(int id, String firstName, String lastName, String address, String city, String state, String zip,
+			String phoneNumber, String email) {
+		this.id = id;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.address = address;
@@ -24,6 +28,22 @@ public class Contact {
 		this.zip = zip;
 		this.phoneNumber = phoneNumber;
 		this.email = email;
+	}
+
+	public Contact(String firstName, String lastName, String address, String city, String state, String zip,
+			String phoneNumber, String email) {
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.address = address;
+		this.city = city;
+		this.state = state;
+		this.zip = zip;
+		this.phoneNumber = phoneNumber;
+		this.email = email;
+	}
+
+	public int getId() {
+		return id;
 	}
 
 	public String getFirstName() {
@@ -60,9 +80,9 @@ public class Contact {
 
 	@Override
 	public String toString() {
-		return "\n---------------Contact Details-----------" + "\nFirst Name: " + firstName + "\nLast Name: " + lastName
-				+ "\nAddress: " + address + "\nCity: " + city + "\nState: " + state + "\nZip: " + zip
-				+ "\nPhone Number: " + phoneNumber + "\nEmail: " + email;
+		return "\n---------------Contact Details-----------" + "\nId: " + id + "\nFirst Name: " + firstName
+				+ "\nLast Name: " + lastName + "\nAddress: " + address + "\nCity: " + city + "\nState: " + state
+				+ "\nZip: " + zip + "\nPhone Number: " + phoneNumber + "\nEmail: " + email;
 	}
 
 	@Override
