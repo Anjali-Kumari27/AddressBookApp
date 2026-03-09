@@ -1,0 +1,22 @@
+[
+  {
+    "firstName": "anjali",
+    "lastName": "singh",
+    "address": "gkp",
+    "city": "gkp",
+    "state": "up",
+    "zip": "34",
+    "phoneNumber": "23",
+    "email": "bhd"
+  },
+  {
+    "firstName": "arpita",
+    "lastName": "singh",
+    "address": "bhg",
+    "city": "lucknow",
+    "state": "up",
+    "zip": "45",
+    "phoneNumber": "21",
+    "email": "bdh2"
+  }
+]
