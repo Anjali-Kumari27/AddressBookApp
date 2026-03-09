@@ -1,3 +1,2 @@
-anjali,si,er,gkp,up,23,21,nb3
-devika,ch,mp,katni,mp,45,43,hdbh4
-madhu,singh,kol,kolkata,wb,56,87,bgj3
+anjali,singh,gkp,gkp,up,34,23,bhd
+arpita,singh,bhg,lucknow,up,45,21,bdh2
