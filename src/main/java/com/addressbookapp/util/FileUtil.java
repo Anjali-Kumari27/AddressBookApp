@@ -1,6 +1,9 @@
 package com.addressbookapp.util;
 
 import com.addressbookapp.model.Contact;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
 import com.opencsv.CSVReader;
 import com.opencsv.CSVWriter;
 
@@ -9,6 +12,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -95,5 +99,31 @@ public class FileUtil {
 		}
 
 		return contacts;
+	}
+
+	public static void writeContactsToJSON(List<Contact> contacts, String fileName) {
+		Gson gson = new GsonBuilder().setPrettyPrinting().create();
+
+		try (FileWriter writer = new FileWriter(fileName)) {
+			gson.toJson(contacts, writer);
+			System.out.println("Contacts written to JSON file successfully.");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static List<Contact> readContactsFromJSON(String fileName) {
+		Gson gson = new Gson();
+		Type contactListType = new TypeToken<List<Contact>>() {
+		}.getType();
+
+		try (FileReader reader = new FileReader(fileName)) {
+			List<Contact> contacts = gson.fromJson(reader, contactListType);
+			return contacts != null ? contacts : new ArrayList<>();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+		return new ArrayList<>();
 	}
 }
