@@ -1,2 +1,3 @@
-anjali,singh,up gkp,gkp,up,23,123,anjali@gmail.com
-devika,chak,katni,katni,mp,44,23,devika@gmail
+anjali,si,er,gkp,up,23,21,nb3
+devika,ch,mp,katni,mp,45,43,hdbh4
+madhu,singh,kol,kolkata,wb,56,87,bgj3
