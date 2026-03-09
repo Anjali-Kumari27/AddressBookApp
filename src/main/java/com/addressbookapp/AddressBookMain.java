@@ -195,5 +195,17 @@ public class AddressBookMain {
 
 		System.out.println("\nContacts read from CSV file:");
 		contactsFromCSV.forEach(System.out::println);
+
+		String jsonFileName = "addressbook.json";
+
+		System.out.println("\n--- UC15 JSON File IO ---");
+		System.out.println("\nWriting contacts to JSON file...");
+		FileUtil.writeContactsToJSON(sortBook.getContacts(), jsonFileName);
+
+		System.out.println("\nReading contacts from JSON file...");
+		List<Contact> contactsFromJSON = FileUtil.readContactsFromJSON(jsonFileName);
+
+		System.out.println("\nContacts read from JSON file:");
+		contactsFromJSON.forEach(System.out::println);
 	}
 }
