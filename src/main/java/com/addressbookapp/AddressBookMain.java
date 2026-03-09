@@ -3,6 +3,7 @@ package com.addressbookapp;
 import com.addressbookapp.model.AddressBook;
 import com.addressbookapp.model.AddressBookSystem;
 import com.addressbookapp.model.Contact;
+import com.addressbookapp.util.FileUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -110,7 +111,6 @@ public class AddressBookMain {
 
 		System.out.println("\n--- View Persons By City ---");
 		Map<String, List<Contact>> cityMap = addressBookSystem.viewPersonsByCity();
-
 		cityMap.forEach((city, contacts) -> {
 			System.out.println("\nCity: " + city);
 			contacts.forEach(System.out::println);
@@ -118,7 +118,6 @@ public class AddressBookMain {
 
 		System.out.println("\n--- View Persons By State ---");
 		Map<String, List<Contact>> stateMap = addressBookSystem.viewPersonsByState();
-
 		stateMap.forEach((stateName, contacts) -> {
 			System.out.println("\nState: " + stateName);
 			contacts.forEach(System.out::println);
@@ -126,12 +125,10 @@ public class AddressBookMain {
 
 		System.out.println("\n--- Count By City ---");
 		Map<String, Long> cityCountMap = addressBookSystem.countPersonsByCity();
-
 		cityCountMap.forEach((city, count) -> System.out.println("City: " + city + " -> Count: " + count));
 
 		System.out.println("\n--- Count By State ---");
 		Map<String, Long> stateCountMap = addressBookSystem.countPersonsByState();
-
 		stateCountMap.forEach((stateName, count) -> System.out.println("State: " + stateName + " -> Count: " + count));
 
 		System.out.println("\n--- Sorting Menu ---");
@@ -159,24 +156,33 @@ public class AddressBookMain {
 			System.out.println("\n--- Sorted Contacts By Name ---");
 			sortBook.displaySortedContactsByName();
 			break;
-
 		case 2:
 			System.out.println("\n--- Sorted Contacts By City ---");
 			sortBook.displaySortedContactsByCity();
 			break;
-
 		case 3:
 			System.out.println("\n--- Sorted Contacts By State ---");
 			sortBook.displaySortedContactsByState();
 			break;
-
 		case 4:
 			System.out.println("\n--- Sorted Contacts By Zip ---");
 			sortBook.displaySortedContactsByZip();
 			break;
-
 		default:
 			System.out.println("Invalid choice.");
 		}
+
+		String fileName = "addressbook.txt";
+
+		System.out.println("\n--- UC13 File IO ---");
+
+		System.out.println("\nWriting contacts to file...");
+		FileUtil.writeContactsToFile(sortBook.getContacts(), fileName);
+
+		System.out.println("\nReading contacts from file...");
+		List<Contact> contactsFromFile = FileUtil.readContactsFromFile(fileName);
+
+		System.out.println("\nContacts read from file:");
+		contactsFromFile.forEach(System.out::println);
 	}
 }
