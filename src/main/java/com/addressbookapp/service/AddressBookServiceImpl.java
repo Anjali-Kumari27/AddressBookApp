@@ -17,4 +17,15 @@ public class AddressBookServiceImpl implements AddressBookService {
 	public List<Contact> getAllContactsFromDB() {
 		return addressBookDBService.getAllContacts();
 	}
+
+	@Override
+	public boolean updateContactPhoneNumber(String firstName, String newPhoneNumber) {
+		int rowsUpdated = addressBookDBService.updateContactPhoneNumberByFirstName(firstName, newPhoneNumber);
+		return rowsUpdated > 0;
+	}
+
+	@Override
+	public Contact getContactByFirstName(String firstName) {
+		return addressBookDBService.getContactByFirstName(firstName);
+	}
 }
