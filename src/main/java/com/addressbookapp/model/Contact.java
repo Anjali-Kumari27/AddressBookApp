@@ -46,59 +46,98 @@ public class Contact {
 		return id;
 	}
 
+	public void setId(int id) {
+		this.id = id;
+	}
+
 	public String getFirstName() {
 		return firstName;
+	}
+
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 
 	public String getLastName() {
 		return lastName;
 	}
 
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
+
 	public String getAddress() {
 		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	public String getCity() {
 		return city;
 	}
 
+	public void setCity(String city) {
+		this.city = city;
+	}
+
 	public String getState() {
 		return state;
+	}
+
+	public void setState(String state) {
+		this.state = state;
 	}
 
 	public String getZip() {
 		return zip;
 	}
 
+	public void setZip(String zip) {
+		this.zip = zip;
+	}
+
 	public String getPhoneNumber() {
 		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 
 	public String getEmail() {
 		return email;
 	}
 
-	@Override
-	public String toString() {
-		return "\n---------------Contact Details-----------" + "\nId: " + id + "\nFirst Name: " + firstName
-				+ "\nLast Name: " + lastName + "\nAddress: " + address + "\nCity: " + city + "\nState: " + state
-				+ "\nZip: " + zip + "\nPhone Number: " + phoneNumber + "\nEmail: " + email;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
+	public String toString() {
+		return "Contact{" + "id=" + id + ", firstName='" + firstName + '\'' + ", lastName='" + lastName + '\''
+				+ ", address='" + address + '\'' + ", city='" + city + '\'' + ", state='" + state + '\'' + ", zip='"
+				+ zip + '\'' + ", phoneNumber='" + phoneNumber + '\'' + ", email='" + email + '\'' + '}';
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (this == o)
 			return true;
-		}
-		if (!(obj instanceof Contact)) {
+		if (o == null || getClass() != o.getClass())
 			return false;
-		}
-		Contact other = (Contact) obj;
-		return firstName.equalsIgnoreCase(other.firstName) && lastName.equalsIgnoreCase(other.lastName);
+
+		Contact contact = (Contact) o;
+		return id == contact.id && Objects.equals(firstName, contact.firstName)
+				&& Objects.equals(lastName, contact.lastName) && Objects.equals(address, contact.address)
+				&& Objects.equals(city, contact.city) && Objects.equals(state, contact.state)
+				&& Objects.equals(zip, contact.zip) && Objects.equals(phoneNumber, contact.phoneNumber)
+				&& Objects.equals(email, contact.email);
 	}
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(firstName.toLowerCase(), lastName.toLowerCase());
+		return Objects.hash(id, firstName, lastName, address, city, state, zip, phoneNumber, email);
 	}
 }
